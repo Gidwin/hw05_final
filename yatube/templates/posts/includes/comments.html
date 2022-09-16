@@ -1,0 +1,21 @@
+{% for comment in comments %}
+<div class="media mb-4">
+  <div class="media-body">
+    <h5 class="mt-0">
+      <a href="{% url 'posts:profile' comment.author.username %}">
+        {{ comment.author.username }}
+      </a>
+    </h5>
+    <div class="container">
+      <div class="row">
+        <small class="col align-self-end">{{ comment.created|date:"d E Y" }}</small>
+      </div>
+    </div>
+      <p>
+        {% if comment.text %}
+          {{ comment.text }}
+        {% endif %}
+      </p>
+    </div>
+  </div>
+{% endfor %}
