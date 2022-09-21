@@ -74,6 +74,13 @@ class Comment(models.Model):
         auto_now_add=True
     )
 
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+
+    def __str__(self):
+        return self.text[:settings.SLICE_FOR_POST]
+
 
 class Follow(models.Model):
     user = models.ForeignKey(

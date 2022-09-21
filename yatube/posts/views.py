@@ -7,7 +7,7 @@ from .models import Group, Post, Follow, User
 
 
 def index(request):
-    post_list = Post.objects.all()
+    post_list = Post.objects.select_related('author', 'group')
     page_obj = pagination(request, post_list)
     return render(request, 'posts/index.html', {
         'page_obj': page_obj,
@@ -16,7 +16,7 @@ def index(request):
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = group.posts.all()
+    posts = group.posts.select_related('author')
     page_obj = pagination(request, posts)
     return render(request, 'posts/group_list.html', {
         'page_obj': page_obj,
