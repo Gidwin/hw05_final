@@ -4,6 +4,8 @@
   <div class="container py-5"> 
     <h1> {{ group.title }} </h1> 
     <p> {{group.description}} </p> 
-    {% include 'posts/includes/posts.html' %}
+    {% for post in page_obj %}
+        {% include 'posts/includes/posts.html'  with post=post %}
+    {% endfor %}
   </div>   
 {% endblock %} 
